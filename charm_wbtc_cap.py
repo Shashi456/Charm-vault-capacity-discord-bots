@@ -26,14 +26,14 @@ def get_vault_capacity():
     wbtc_amount = x[0]/10**8
     usdc_amount = x[1]/10**6
     btc_pool = contract.functions.pool().call()
-    pool_contract = contract = w3.eth.contract(address=btc_pool, abi=ABI_pool)
+    pool_contract = w3.eth.contract(address=btc_pool, abi=ABI_pool)
     slot0 = contract2.functions.slot0().call()
     price = slot0[1]**1.001
     TVL = wbtc_amount * price + usdc_amount
-    cap = contract.functions.totalsupply().call()
-    balance = contract.functions.maxtotalsupply().call()
+    cap = contract.functions.totalSupply().call()
+    balance = contract.functions.maxTotalSupply().call()
     max_TVL = TVL * (mts/ts)
-    return f"{capacity:,.2f} USDC Capacity"
+    return f"{TVL:,.2f} USDC Capacity"
 
 @client.event
 async def on_ready():
